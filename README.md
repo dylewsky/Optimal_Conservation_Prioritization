@@ -1,6 +1,6 @@
 # EHJV Decision Support Tool
 
-Code accompanying [paper citation]
+Code accompanying the paper "Optimal Conservation Prioritization for Waterfowl and Other Birds in Eastern Canada" by Daniel Dylewsky, Matthew E. Dyson, James E. Patterson, Richard Schuster, and Joseph R. Bennett.
 
 ## Description
 
@@ -17,11 +17,23 @@ To achieve this compatibility, our code makes use of the published Where to Work
 
 ## Executing Code
 
-First, obtain necessary data files. To use eBird abundance layers, run `eBird_download_abundance_data.R`. By default, it will download data for EHJV priority species as designated in `/wtw-data-prep/Data/IBP_Species_Abbreviations.csv`
-To use other abundance layers, extract the relevant raster files (in .tif format) to /data/spatialData/your_data_source_name
+### Data Preparation
+
+Analysis can be performed using either 1) the same planning grid and species data used for the Eastern Habitat Joint Venture in the paper, or 2) alternative grid parameters, study region, or data sources.
+
+#### Using existing data/parameters
+Simply extract `EHJV_Example_Data.zip` to `/wtw-data-prep/WTW/EHJV_10km_hex_grid`.
+
+#### Using custom data/parameters
+Obtain necessary data files. To use eBird abundance layers, run `eBird_download_abundance_data.R`. By default, it will download data for EHJV priority species as designated in `/wtw-data-prep/Data/IBP_Species_Abbreviations.csv`. To use other abundance layers, extract the relevant raster files (in .tif format) to /data/spatialData/your_data_source_name. 
 
 Some code functionality depends on additional data files. To prepare geometries derived from the Canadian Forest Service's Map of Forest Management in Canada, run `process_forest_management_data.R`. You will be prompted to download the relevant files if they are not present.
 
-Data preprocessing is carried out using the files in the /wtw-data-prep/ directory. `execute_project.R` serves as a wrapper around this processing pipeline so it can be run in a single line. For more details on customizing or troubleshooting this pipeline, refer to its [original documentation](https://github.com/NCC-CNC/wtw-data-prep/).
+Data preprocessing is carried out using the files in the /wtw-data-prep/ directory. `WTW_Prepare_Data.R` serves as a wrapper around this processing pipeline so it can be run in a single line. For more details on customizing run parameters or troubleshooting this pipeline, refer to its [original documentation](https://github.com/NCC-CNC/wtw-data-prep/). Some scripts are implemented in Python using the ArcPy package, which requires an active license.
 
-Data analysis is carried out using `WTW_Prioritizr_Scenarios.R` (to compute region-wide prioritizations using pre-specified subsets of available abundance data), or WTW_Prioritizr_Patchwork.R` (to compute prioritizations which divide the study area into subregions).
+### Data Analysis
+
+Data analysis is carried out using:
+
+1. `WTW_Prioritizr_Scenarios.R` (to compute region-wide prioritizations using pre-specified subsets of available abundance data)
+2. `WTW_Prioritizr_Patchwork.R` (to compute prioritizations which divide the study area into subregions)
