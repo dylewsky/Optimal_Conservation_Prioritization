@@ -30,8 +30,11 @@ library(sf)
 library(dplyr)
 library(readr)
 library(tools)
-source("functions/fct_init_metadata.R")
-source("functions/fct_get_dirs.R")
+source(file.path("functions","fct_init_metadata.R"),chdir=TRUE)
+source(file.path("functions","fct_get_dirs.R"),chdir=TRUE)
+
+# source(file.path(here::here(), "functions","fct_init_metadata.R"))
+# source(file.path(here::here(), "functions","fct_get_dirs.R"))
 
 # Setup ------------------------------------------------------------------------
 

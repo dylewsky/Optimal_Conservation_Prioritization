@@ -1,9 +1,21 @@
 # Set path of Python environment with arcpy installed
-Sys.setenv(RETICULATE_PYTHON = file.path("C:", "Program Files", "ArcGIS", "Pro", "bin", "Python", "envs", "arcgispro-py3"))
 
+arc_py3_path <- file.path("C:", "Program Files", "ArcGIS", "Pro", "bin", "Python", "envs", "arcgispro-py3")
+if (!dir.exists(arc_py3_path)){
+  arc_py3_path <- file.path("C:", "Users", "AppData", "Local", "Programs", "ArcGIS", "Pro", "bin", "Python", "envs", "arcgispro-py3")
+}
+
+if (!dir.exists(arc_py3_path)){
+  arc_py3_path <- NA
+  stop('ArcGIS installation not found: Set arc_py3_path manually to a directory containing a Python distribution with ArcPy installed')
+}
+
+Sys.setenv(RETICULATE_PYTHON = arc_py3_path)
 
 library(reticulate)
 library(stringr)
+
+
 
 source("01_initiate_project.R")
 source("02_aoi_to_custom_grid.R")
